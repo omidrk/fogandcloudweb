@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lb-backend
+  namespace: default
+  labels:
+    app: lb-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lb-backend
+  template:
+    metadata:
+      labels:
+        app: lb-backend
+    spec:
+      containers:
+      - name: api
+        image: nodeback
+        command:
+        - "/bin/sh"
+        - "-ecx"
+        - |
+          echo "I am pod: $MY_POD_NAME runing on node: $MY_NODE_NAME"
+        env:
+        - name: MY_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: PORT
+          value: 8000
+        - name: MEANKUBE_DB_SERVICE_HOST
+          value: 217.77.95.76
+        - name: MEANKUBE_DB_SERVICE_PORT
+          value: 27017
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: "lb-backend"
+  annotations:
+    # Create endpoints also if the related pod isn't ready
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+spec:
+  type: NodePort
+  ports:
+  - port: 8000
+    nodePort: 30000
+    targetPort: 8000
+  selector:
+    app: lb-example
