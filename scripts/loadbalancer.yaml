@@ -18,11 +18,7 @@ spec:
       containers:
       - name: api
         image: nodeback
-        command:
-        - "/bin/sh"
-        - "-ecx"
-        - |
-          echo "I am pod: $MY_POD_NAME runing on node: $MY_NODE_NAME"
+        imagePullPolicy: Never  # or IfNotPresent
         env:
         - name: MY_NODE_NAME
           valueFrom:
