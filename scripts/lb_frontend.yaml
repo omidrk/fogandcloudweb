@@ -29,13 +29,13 @@ spec:
             fieldRef:
               fieldPath: metadata.name
         - name: PORT
-          value: 8000
+          value: "8000"
         - name: API_IP
-          value: ${MASTER_IP}
+          value: "${MASTER_IP}"
         - name: API_PORT
-          value: 30000
+          value: "30000"
         - name: DEV_PORT
-          value: 10010
+          value: "10010"
 ---
 
 
