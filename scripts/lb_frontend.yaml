@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: lb-front
+  name: lbfront
   namespace: default
   labels:
-    app: lb-front
+    app: lbfront
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: lb-front
+      app: lbfront
   template:
     metadata:
       labels:
-        app: lb-front
+        app: lbfront
     spec:
       containers:
       - name: front
@@ -36,13 +36,15 @@ spec:
           value: "30000"
         - name: DEV_PORT
           value: "10010"
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do echo hello; sleep 10;done"]
 ---
 
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: "lb-front"
+  name: "lbfront"
   annotations:
     # Create endpoints also if the related pod isn't ready
     service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
@@ -53,4 +55,4 @@ spec:
     nodePort: 30005
     targetPort: 4200
   selector:
-    app: lb-front
+    app: lbfront
