@@ -31,13 +31,13 @@ spec:
         - name: PORT
           value: "8000"
         - name: API_IP
-          value: "${MASTER_IP}"
+          value: `${MASTER_IP}`
         - name: API_PORT
           value: "30000"
         - name: DEV_PORT
           value: "10010"
         command: ["/bin/sh"]
-        args: ["-c", "while true; do echo hello; sleep 10;done"]
+        args: ["-c", "while true; do env; sleep 100;done"]
 ---
 
 
