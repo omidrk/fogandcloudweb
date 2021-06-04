@@ -31,7 +31,7 @@ spec:
         - name: PORT
           value: "8000"
         - name: MEANKUBE_DB_SERVICE_HOST
-          value: "${MASTER_IP}"
+          value: "217.77.95.76"
         - name: MEANKUBE_DB_SERVICE_PORT
           value: "27017"
 ---
