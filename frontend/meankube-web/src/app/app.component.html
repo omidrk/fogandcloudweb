@@ -1,0 +1,33 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<mat-toolbar color="primary">
+    <img src="../assets/logo.png" style="margin-top: 20px;" height="80" width="80" />
+  
+    <mat-toolbar-row>
+      <span>MEANKube</span>
+      <span class="example-spacer"></span>
+      <mat-icon>home</mat-icon>
+      <mat-icon>sep</mat-icon>
+      <mat-icon>shopping-report</mat-icon>
+      <mat-icon>sep</mat-icon>
+      <button mat-raised-button class="app-menu">My Orders</button>
+      <button mat-raised-button class="app-menu">My Account</button>
+      <button mat-raised-button class="app-menu">Admin</button>
+    </mat-toolbar-row>
+  
+  </mat-toolbar>
+
+  <h2 class="ui header">Update MEANKube API</h2> 
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="ui form"> 
+    <div class="field">  
+      <mat-form-field>
+        <input width="300" matInput id="meanKubeAPIUrl" placeholder="MEANKube API" name="meanKubeAPIUrl" [formControl]="myForm.controls['meanKubeAPIUrl']">
+      </mat-form-field>
+      <button type="submit" class="ui button">Submit</button> 
+    </div>
+  </form>
+
+  <router-outlet></router-outlet>
+
+
+
