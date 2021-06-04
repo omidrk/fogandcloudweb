@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: front
-        image: nodefront
+        image: meanfront
         imagePullPolicy: Never  # or IfNotPresent
         env:
         - name: MY_NODE_NAME
@@ -50,7 +50,7 @@ spec:
   type: NodePort
   ports:
   - port: 4200
-    nodePort: 8090
+    nodePort: 30005
     targetPort: 4200
   selector:
     app: lb-front
