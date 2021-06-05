@@ -46,6 +46,15 @@ cd fogandcloudweb/database/
 terraform init 
 terraform apply -auto-approve 
 
+#### to expose database service to the autside world
+#TS_IP = `terraform output -json instance_ips | jq -r '.'`
+
+sudo iptables -t nat -A PREROUTING -p tcp --dport 27017 \
+   -j DNAT --to-destination 172.24.4.184:27017
+   
+# create a masquerade rule in order to return packets
+sudo iptables -t nat -A POSTROUTING -p tcp --dport 27017 -j MASQUERADE
+
 #Download github repo
 
 #download admin openrc file to use openstack commands, put in main directory.
