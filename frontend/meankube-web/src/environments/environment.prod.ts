@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  meankube_api: ("http://"+process.env.API_IP+":"+process.env.API_PORT+"/")
+  meankube_api: ("http://myiphere:myporthere")
 };
