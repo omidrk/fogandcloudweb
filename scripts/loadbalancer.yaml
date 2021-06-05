@@ -29,7 +29,7 @@ spec:
             fieldRef:
               fieldPath: metadata.name
         - name: PORT
-          value: "4200"
+          value: "8000"
         - name: MEANKUBE_DB_SERVICE_HOST
           value: "217.77.95.76"
         - name: MEANKUBE_DB_SERVICE_PORT

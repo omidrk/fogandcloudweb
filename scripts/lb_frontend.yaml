@@ -29,7 +29,7 @@ spec:
             fieldRef:
               fieldPath: metadata.name
         - name: PORT
-          value: "8000"
+          value: "4200"
         - name: API_IP
           value: "172.18.0.2"
         - name: API_PORT
