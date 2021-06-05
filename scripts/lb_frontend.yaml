@@ -28,8 +28,6 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        - name: PORT
-          value: "4200"
         - name: API_IP
           value: "172.18.0.2"
         - name: API_PORT
@@ -37,7 +35,7 @@ spec:
         - name: DEV_PORT
           value: "10010"
         command: ["/bin/sh"]
-        args: ["-c", "while true; do env; sleep 100;done"]
+        args: ["sed -i "s/myiphere:myporthere/$API_IP:$API_PORT/g" src/environments/environment.ts","sed -i "s/myiphere:myporthere/$API_IP:$API_PORT/g" src/environments/environment.prod.ts","npm start"]
 ---
 
 
