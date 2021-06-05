@@ -31,7 +31,7 @@ spec:
         - name: PORT
           value: "8000"
         - name: API_IP
-          value: `${MASTER_IP}`
+          value: "172.18.0.2"
         - name: API_PORT
           value: "30000"
         - name: DEV_PORT
