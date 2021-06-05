@@ -11,8 +11,9 @@ resource "openstack_networking_network_v2" "DBprivate" {
   name = "DBprivate"
 }
 
+#### HTTP SUBNET ####
 
-# Subnet db configuration
+# Subnet http configuration
 resource "openstack_networking_subnet_v2" "db" {
   name            = var.network_db["subnet_name"]
   network_id      = openstack_networking_network_v2.DBprivate.id
@@ -25,4 +26,5 @@ resource "openstack_networking_router_interface_v2" "dbc" {
   router_id = openstack_networking_router_v2.toExt.id
   subnet_id = openstack_networking_subnet_v2.db.id
 }
+
 

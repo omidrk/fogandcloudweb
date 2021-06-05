@@ -6,7 +6,7 @@ resource "openstack_networking_port_v2" "port_1" {
   security_group_ids = [openstack_compute_secgroup_v2.db.id,openstack_compute_secgroup_v2.ssh.id]
 
   fixed_ip {
-    subnet_id  = openstack_networking_subnet_v2.db.id
+    subnet_id  = "${openstack_networking_subnet_v2.db.id}"
     ip_address = "192.168.10.110"
   }
 }
@@ -16,8 +16,8 @@ resource "openstack_compute_instance_v2" "mongodb" {
   name        = "db1"
   image_name  = var.image
   flavor_name = var.flavor_db
-  key_pair    = openstack_compute_keypair_v2.webmemberauto.name
-  user_data   = file("scripts/first-boot.sh")
+  key_pair    = "${openstack_compute_keypair_v2.webmemberauto.name}"
+  user_data   = file("scripts/initme.sh")
   network {
     port = openstack_networking_port_v2.port_1.id
   }
@@ -47,7 +47,9 @@ resource "openstack_compute_floatingip_associate_v2" "floatdb" {
   floating_ip = openstack_networking_floatingip_v2.floatdb.address
   instance_id = openstack_compute_instance_v2.mongodb.id
 }
-
+output "instance_ips" {
+  value = openstack_networking_floatingip_v2.floatdb.address
+}
 #### VOLUME MANAGEMENT ####
 
 # Create volume
@@ -61,4 +63,5 @@ resource "openstack_compute_volume_attach_v2" "dbstorage" {
   instance_id = openstack_compute_instance_v2.mongodb.id
   volume_id   = openstack_blockstorage_volume_v2.dbstorage.id
 }
+
 
