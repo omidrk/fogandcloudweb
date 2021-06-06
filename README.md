@@ -14,4 +14,4 @@ Automation scripts can be found in database/scripts directory. database/scripts/
 ## PaaS machine
 # configuration
 The main logic on the deployment is eachtime on both front-end and back-end user will make a docker image which can be found on Docker file on both backend and frontend directories. the script which is based on Node docker image will install all the dependencies and eventually uploud it to kubernetes. Under the script directory you can find scripts necessary to building webapplication.( scripts/build_docker_images.sh)
-Also automation script is for deploying 2 replicas for backend and 2 replicas for frontend and loud balancer which is exposed on port 30000 for backend and 30005 for frontend.
+Also automation script is for deploying 2 replicas for backend and 2 replicas for frontend and loadbalancer which is exposed on port 30000 for backend and 30005 for frontend.
